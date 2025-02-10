@@ -1,4 +1,6 @@
 class Game
+
+  @board = [[" ", " ", " "], [" ", " ", " "], [" ", " ", " "]]
   def name_players
     @names = take_name_player()
     gets.chomp
@@ -15,18 +17,18 @@ class Game
  end
 
  def game_board
-   array1 = ["__", "|","__","|","__"]
-   array2 = ["__", "|","__","|","__"]
-   array3 = ["  ", "|","  ","|","  "]
-   puts ""
-   
-   print *array1
-   puts ""
-   print *array2
-   puts ""
-   print *array3
-   puts ""
-   puts ""
+  board = [["-", "-", "-"], ["-", "-", "-"], ["-", "-", "-"]]
+
+  # Mapeamos as strings para as posições reais do array
+  dict_board = {
+    "1" => [0, 0], "2" => [0, 1], "3" => [0, 2],
+    "4" => [1, 0], "5" => [1, 1], "6" => [1, 2],
+    "7" => [2, 0], "8" => [2, 1], "9" => [2, 2]
+  }
+  
+  # Mostra o tabuleiro inicial
+  puts ""
+  board.each { |row| puts row.join(" | ") }
    
    
  end
@@ -34,13 +36,12 @@ class Game
  def take_name_player
   puts "What's your name, player 1?"
   name_player1 = gets.chomp
-  puts "Hello, #{name_player1}!"
-  puts 'you will be the "x"'
+  puts "Hello, #{name_player1}! You will be the \"x\""
   puts ""
   puts "What's your name, player 2?"
   name_player2 = gets.chomp
-  puts "Hello, #{name_player2}!"
-  puts 'you will be the "0"' 
+  puts "Hello, #{name_player2}! You will be the \"0\""
+  
   return name_player1, name_player2
  end
 
@@ -78,13 +79,12 @@ end
 
 end
 
-game1 = Game.new()
-game1.begin_screen
-game1.game_board
-#game1.clear_screen
-game1.puts_the_rules
-game1.clear_screen
-game1.name_players
-game1.clear_screen
-game1.game_play()
+game = Game.new()
+game.begin_screen
+game.game_board
+game.puts_the_rules
+game.clear_screen
+game.name_players
+game.clear_screen
+game.game_play()
 
